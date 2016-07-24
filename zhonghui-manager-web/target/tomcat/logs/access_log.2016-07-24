@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [24/Jul/2016:10:44:23 +0800] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-8080-exec-1 326
+0:0:0:0:0:0:0:1 - - [24/Jul/2016:10:44:29 +0800] "GET /SpringMVCMybatis/items/queryItems.action HTTP/1.1" 404 1031 http-bio-8080-exec-2 2
+0:0:0:0:0:0:0:1 - - [24/Jul/2016:10:44:31 +0800] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-8080-exec-4 1
+0:0:0:0:0:0:0:1 - - [24/Jul/2016:10:44:36 +0800] "GET / HTTP/1.1" 200 347 http-bio-8080-exec-5 2541
