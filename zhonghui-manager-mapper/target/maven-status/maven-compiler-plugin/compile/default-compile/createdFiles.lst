@@ -1,0 +1,11 @@
+com\huizhong\mapper\TbItemParamMapper.class
+com\huizhong\mapper\TbOrderShippingMapper.class
+com\huizhong\mapper\TbOrderItemMapper.class
+com\huizhong\mapper\TbItemCatMapper.class
+com\huizhong\mapper\TbContentMapper.class
+com\huizhong\mapper\TbContentCategoryMapper.class
+com\huizhong\mapper\TbUserMapper.class
+com\huizhong\mapper\TbItemDescMapper.class
+com\huizhong\mapper\TbItemParamItemMapper.class
+com\huizhong\mapper\TbItemMapper.class
+com\huizhong\mapper\TbOrderMapper.class
