@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.huizhong.mapper.TbItemMapper;
 import com.huizhong.pojo.TbItem;
 import com.huizhong.pojo.TbItemExample;
 import com.huizhong.pojo.TbItemExample.Criteria;
+import com.zhonghui.common.pojo.EasyUIDataGridResult;
 import com.zhonghui.service.ItemService;
 
 /**
@@ -34,6 +37,26 @@ public class ItemServiceImpl implements ItemService {
 			return item;
 		}
 		return null;
+	}
+
+	/**
+	 * 商品列表查询
+	 */
+	@Override
+	public EasyUIDataGridResult getItemList(int page, int rows) {
+		// 查询商品列表
+		TbItemExample example = new TbItemExample();
+		// 分页处理
+		PageHelper.startPage(page, rows);
+		List<TbItem> items = itemMapper.selectByExample(example);
+		// 创建一个返回值对象
+		EasyUIDataGridResult easyUIDataGridResult = new EasyUIDataGridResult();
+		easyUIDataGridResult.setRows(items);
+		// 取记录总条目数
+		PageInfo<TbItem> pageInfo = new PageInfo<>(items);
+		long total = pageInfo.getTotal();
+		easyUIDataGridResult.setTotal(total);
+		return easyUIDataGridResult;
 	}
 
 }
