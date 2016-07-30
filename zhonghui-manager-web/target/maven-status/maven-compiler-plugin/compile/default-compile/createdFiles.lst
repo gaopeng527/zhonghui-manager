@@ -1,2 +1,3 @@
 com\zhonghui\controller\ItemController.class
 com\zhonghui\controller\PageController.class
+com\zhonghui\controller\ItemCatController.class
