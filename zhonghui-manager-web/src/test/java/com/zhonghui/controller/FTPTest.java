@@ -7,6 +7,8 @@ import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.junit.Test;
 
+import com.zhonghui.common.utils.FtpUtil;
+
 public class FTPTest {
 	
 	@Test
@@ -28,7 +30,13 @@ public class FTPTest {
 		// 第二个参数：上传文件的InputStream
 		ftpClient.storeFile("hello.jpg", fis);
 		// 关闭连接
-		ftpClient.logout();
-		
+		ftpClient.logout();	
+	}
+	
+	@Test
+	public void testFtpUtil() throws Exception {
+		// 读取本地文件
+		FileInputStream fis = new FileInputStream(new File("F:\\壁纸\\8-100GR24312[1].jpg"));
+		FtpUtil.uploadFile("192.168.25.113", 21, "ftpuser", "ftpuser", "/home/ftpuser/www/images", "/2016/07/30", "hello.jpg", fis);
 	}
 }
