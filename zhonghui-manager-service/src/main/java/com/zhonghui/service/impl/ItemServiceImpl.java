@@ -1,5 +1,6 @@
 package com.zhonghui.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import com.huizhong.pojo.TbItem;
 import com.huizhong.pojo.TbItemExample;
 import com.huizhong.pojo.TbItemExample.Criteria;
 import com.zhonghui.common.pojo.EasyUIDataGridResult;
+import com.zhonghui.common.pojo.ZhonghuiResult;
+import com.zhonghui.common.utils.IDUtils;
 import com.zhonghui.service.ItemService;
 
 /**
@@ -57,6 +60,23 @@ public class ItemServiceImpl implements ItemService {
 		long total = pageInfo.getTotal();
 		easyUIDataGridResult.setTotal(total);
 		return easyUIDataGridResult;
+	}
+
+	@Override
+	public ZhonghuiResult createItem(TbItem item) {
+		// item补全
+		// 生成商品ID
+		Long itemId = IDUtils.genItemId();
+		item.setId(itemId);
+		// 设置商品状态，新添商品为正常，1-正常，2-下架，3-删除
+		item.setStatus((byte) 1);
+		// 商品创建时间
+		item.setCreated(new Date());
+		// 商品更新时间
+		item.setUpdated(new Date());
+		// 插入到数据库
+		itemMapper.insert(item);
+		return ZhonghuiResult.ok();
 	}
 
 }
