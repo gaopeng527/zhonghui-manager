@@ -1,4 +1,5 @@
 com\zhonghui\controller\ItemController.class
 com\zhonghui\controller\PageController.class
-com\zhonghui\controller\PictureController.class
+com\zhonghui\controller\ItemParamController.class
 com\zhonghui\controller\ItemCatController.class
+com\zhonghui\controller\PictureController.class
