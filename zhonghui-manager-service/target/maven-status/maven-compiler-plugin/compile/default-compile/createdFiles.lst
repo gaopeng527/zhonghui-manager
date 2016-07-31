@@ -1,4 +1,6 @@
+com\zhonghui\service\impl\PictureServiceImpl.class
 com\zhonghui\service\ItemCatService.class
+com\zhonghui\service\PictureService.class
 com\zhonghui\service\ItemService.class
-com\zhonghui\service\impl\ItemCatServiceImpl.class
 com\zhonghui\service\impl\ItemServiceImpl.class
+com\zhonghui\service\impl\ItemCatServiceImpl.class

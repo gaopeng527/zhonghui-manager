@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.huizhong.mapper.TbItemDescMapper;
 import com.huizhong.mapper.TbItemMapper;
 import com.huizhong.pojo.TbItem;
+import com.huizhong.pojo.TbItemDesc;
 import com.huizhong.pojo.TbItemExample;
 import com.huizhong.pojo.TbItemExample.Criteria;
 import com.zhonghui.common.pojo.EasyUIDataGridResult;
@@ -26,6 +28,8 @@ import com.zhonghui.service.ItemService;
 public class ItemServiceImpl implements ItemService {
 	@Autowired
 	private TbItemMapper itemMapper;
+	@Autowired
+	private TbItemDescMapper itemDescMapper;
 	
 	@Override
 	public TbItem getItemById(long itemId) {
@@ -63,7 +67,7 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public ZhonghuiResult createItem(TbItem item) {
+	public ZhonghuiResult createItem(TbItem item, String desc) throws Exception {
 		// item补全
 		// 生成商品ID
 		Long itemId = IDUtils.genItemId();
@@ -76,6 +80,26 @@ public class ItemServiceImpl implements ItemService {
 		item.setUpdated(new Date());
 		// 插入到数据库
 		itemMapper.insert(item);
+		// 添加商品描述信息
+		ZhonghuiResult result = insertItemDesc(itemId, desc);
+		if(result.getStatus() != 200) {
+			throw new Exception(); // 让事务回滚
+		}
+		return ZhonghuiResult.ok();
+	}
+	
+	/**
+	 * 添加商品描述信息
+	 * @param desc
+	 * @return
+	 */
+	private ZhonghuiResult insertItemDesc(Long itemId, String desc) {
+		TbItemDesc itemDesc = new TbItemDesc();
+		itemDesc.setItemId(itemId);
+		itemDesc.setItemDesc(desc);
+		itemDesc.setCreated(new Date());
+		itemDesc.setUpdated(new Date());
+		itemDescMapper.insert(itemDesc);
 		return ZhonghuiResult.ok();
 	}
 
