@@ -1,8 +1,10 @@
 com\zhonghui\service\ItemParamService.class
 com\zhonghui\service\PictureService.class
-com\zhonghui\service\impl\ItemCatServiceImpl.class
 com\zhonghui\service\impl\ItemServiceImpl.class
+com\zhonghui\service\impl\ItemParamItemServiceImpl.class
+com\zhonghui\service\impl\ItemCatServiceImpl.class
 com\zhonghui\service\impl\PictureServiceImpl.class
 com\zhonghui\service\impl\ItemParamServiceImpl.class
+com\zhonghui\service\ItemParamItemService.class
 com\zhonghui\service\ItemCatService.class
 com\zhonghui\service\ItemService.class
