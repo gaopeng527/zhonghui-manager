@@ -37,8 +37,8 @@ public class ItemController {
 	
 	@RequestMapping(value="/item/save", method=RequestMethod.POST)
 	@ResponseBody
-	public ZhonghuiResult createItem(TbItem item, String desc) throws Exception {
-		ZhonghuiResult result = itemService.createItem(item, desc);
+	public ZhonghuiResult createItem(TbItem item, String desc, String itemParams) throws Exception {
+		ZhonghuiResult result = itemService.createItem(item, desc, itemParams);
 		return result;
 	}
 }

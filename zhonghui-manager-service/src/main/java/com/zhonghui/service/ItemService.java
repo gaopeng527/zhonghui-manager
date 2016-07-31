@@ -7,5 +7,5 @@ import com.zhonghui.common.pojo.ZhonghuiResult;
 public interface ItemService {
 	TbItem getItemById(long itemId);
 	EasyUIDataGridResult getItemList(int page, int rows);
-	ZhonghuiResult createItem(TbItem item, String desc) throws Exception;
+	ZhonghuiResult createItem(TbItem item, String desc, String itemParam) throws Exception;
 }

@@ -10,10 +10,12 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.huizhong.mapper.TbItemDescMapper;
 import com.huizhong.mapper.TbItemMapper;
+import com.huizhong.mapper.TbItemParamItemMapper;
 import com.huizhong.pojo.TbItem;
 import com.huizhong.pojo.TbItemDesc;
 import com.huizhong.pojo.TbItemExample;
 import com.huizhong.pojo.TbItemExample.Criteria;
+import com.huizhong.pojo.TbItemParamItem;
 import com.zhonghui.common.pojo.EasyUIDataGridResult;
 import com.zhonghui.common.pojo.ZhonghuiResult;
 import com.zhonghui.common.utils.IDUtils;
@@ -30,6 +32,8 @@ public class ItemServiceImpl implements ItemService {
 	private TbItemMapper itemMapper;
 	@Autowired
 	private TbItemDescMapper itemDescMapper;
+	@Autowired
+	private TbItemParamItemMapper itemParamItemMapper;
 	
 	@Override
 	public TbItem getItemById(long itemId) {
@@ -67,7 +71,7 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public ZhonghuiResult createItem(TbItem item, String desc) throws Exception {
+	public ZhonghuiResult createItem(TbItem item, String desc, String itemParam) throws Exception {
 		// item补全
 		// 生成商品ID
 		Long itemId = IDUtils.genItemId();
@@ -82,6 +86,11 @@ public class ItemServiceImpl implements ItemService {
 		itemMapper.insert(item);
 		// 添加商品描述信息
 		ZhonghuiResult result = insertItemDesc(itemId, desc);
+		if(result.getStatus() != 200) {
+			throw new Exception(); // 让事务回滚
+		}
+		// 添加规格参数
+		result = insertItemParamItem(itemId, itemParam);
 		if(result.getStatus() != 200) {
 			throw new Exception(); // 让事务回滚
 		}
@@ -100,6 +109,24 @@ public class ItemServiceImpl implements ItemService {
 		itemDesc.setCreated(new Date());
 		itemDesc.setUpdated(new Date());
 		itemDescMapper.insert(itemDesc);
+		return ZhonghuiResult.ok();
+	}
+	
+	/**
+	 * 添加商品规格信息
+	 * @param itemId
+	 * @param itemParam
+	 * @return
+	 */
+	private ZhonghuiResult insertItemParamItem(Long itemId, String itemParam) {
+		// 创建一个pojo
+		TbItemParamItem itemParamItem = new TbItemParamItem();
+		itemParamItem.setItemId(itemId);
+		itemParamItem.setParamData(itemParam);
+		itemParamItem.setCreated(new Date());
+		itemParamItem.setUpdated(new Date());
+		// 向表中插入数据
+		itemParamItemMapper.insert(itemParamItem);
 		return ZhonghuiResult.ok();
 	}
 
