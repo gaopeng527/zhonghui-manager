@@ -23,7 +23,7 @@ import com.zhonghui.service.ContentCategoryService;
 public class ContentCategoryServiceImpl implements ContentCategoryService {
 	
 	@Autowired
-	TbContentCategoryMapper contentCategoryMapper;
+	private TbContentCategoryMapper contentCategoryMapper;
 	
 	@Override
 	public List<EUTreeNode> getCategoryList(long parentId) {
