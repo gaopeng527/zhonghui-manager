@@ -9,4 +9,5 @@ public interface ContentCategoryService {
 	List<EUTreeNode> getCategoryList(long parentId);
 	ZhonghuiResult insertContentCategory(long parentId, String name);
 	ZhonghuiResult deleteContentCategory(long parentId, long id);
+	ZhonghuiResult updateContentCategory(long id, String name);
 }

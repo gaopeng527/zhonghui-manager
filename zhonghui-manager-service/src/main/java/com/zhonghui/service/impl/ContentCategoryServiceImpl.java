@@ -87,4 +87,13 @@ public class ContentCategoryServiceImpl implements ContentCategoryService {
 		return ZhonghuiResult.ok();
 	}
 
+	@Override
+	public ZhonghuiResult updateContentCategory(long id, String name) {
+		// 根据id查询
+		TbContentCategory contentCategory = contentCategoryMapper.selectByPrimaryKey(id);
+		contentCategory.setName(name);
+		contentCategoryMapper.updateByPrimaryKey(contentCategory);
+		return ZhonghuiResult.ok();
+	}
+
 }

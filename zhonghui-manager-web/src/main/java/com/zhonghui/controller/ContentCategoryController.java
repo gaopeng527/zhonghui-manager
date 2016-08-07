@@ -44,4 +44,11 @@ public class ContentCategoryController {
 		ZhonghuiResult result = contentCategoryService.deleteContentCategory(parentId, id);
 		return result;
 	}
+	
+	@RequestMapping("/update")
+	@ResponseBody
+	public ZhonghuiResult deleteContentCategory(Long id, String name) {
+		ZhonghuiResult result = contentCategoryService.updateContentCategory(id, name);
+		return result;
+	}
 }
