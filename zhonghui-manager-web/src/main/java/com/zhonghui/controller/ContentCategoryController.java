@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhonghui.common.pojo.EUTreeNode;
+import com.zhonghui.common.pojo.ZhonghuiResult;
 import com.zhonghui.service.ContentCategoryService;
 
 /**
@@ -28,5 +29,19 @@ public class ContentCategoryController {
 	public List<EUTreeNode> getContentCatList(@RequestParam(value="id", defaultValue="0") Long parentId) {
 		List<EUTreeNode> list = contentCategoryService.getCategoryList(parentId);
 		return list;
+	}
+	
+	@RequestMapping("/create")
+	@ResponseBody
+	public ZhonghuiResult createContentCategory(Long parentId, String name) {
+		ZhonghuiResult result = contentCategoryService.insertContentCategory(parentId, name);
+		return result;
+	}
+	
+	@RequestMapping("/delete")
+	@ResponseBody
+	public ZhonghuiResult deleteContentCategory(Long parentId, Long id) {
+		ZhonghuiResult result = contentCategoryService.deleteContentCategory(parentId, id);
+		return result;
 	}
 }
